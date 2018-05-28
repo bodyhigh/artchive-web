@@ -1,0 +1,10 @@
+body {
+    padding-top: 5rem;
+}
+
+.router-outlet-container {
+    /* border: 1px solid pink; */
+    width: 1000px;
+    padding: 0 15px;
+    margin: 10px auto 50px auto;
+}

@@ -1,0 +1,36 @@
+<div class="art-collection-container">
+    <ng-container *ngIf="artCollection else loading">
+        <ng-container *ngIf="artCollection.length > 0 else emptyResults">
+            <table class="table table-hover">
+                <thead>
+                    <tr scope="col">&nbsp;</tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of artCollection; let i = index;" (click)="onArtItemClick(item)">
+                        <td style="width: 130px;">
+                            <img [src]="imgPrimary(item)">
+                        </td>
+                        <td class="title-desc-col">
+                            <div>
+                                <strong>{{ item.title }}</strong>
+                            </div>
+                            <div>
+                                {{ item.description }}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #loading>
+        <div>Loading</div>
+    </ng-template>
+
+    <ng-template #emptyResults>
+        <div class="warning warning-info">
+            Your collection is empty
+        </div>
+    </ng-template>
+</div>
