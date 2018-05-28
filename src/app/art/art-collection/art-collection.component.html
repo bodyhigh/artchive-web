@@ -1,4 +1,8 @@
 <div class="art-collection-container">
+    <div class="collection-filter">
+        <input type="text" placeholder="Search" [(ngModel)]="filterCriteria" class="searchCriteriaInputLg">
+    </div>
+
     <ng-container *ngIf="artCollection else loading">
         <ng-container *ngIf="artCollection.length > 0 else emptyResults">
             <table class="table table-hover">
@@ -6,7 +10,7 @@
                     <tr scope="col">&nbsp;</tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of artCollection; let i = index;" (click)="onArtItemClick(item)">
+                    <tr *ngFor="let item of (artCollection | collectionFilter: filterCriteria) ; let i = index;" (click)="onArtItemClick(item)">
                         <td style="width: 130px;">
                             <img [src]="imgPrimary(item)">
                         </td>

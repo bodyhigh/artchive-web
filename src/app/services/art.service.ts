@@ -7,18 +7,6 @@ import { ResponseUtilService } from "./response-util.service";
 import { Observable } from "rxjs";
 import { tap, map, catchError } from "rxjs/operators";
 
-interface IArtImageUrl { 
-    url: string, 
-    isPrimary: boolean
-}
-
-interface IArtRecord { 
-    title: string; 
-    description: string; 
-    artist: string; 
-    url: IArtImageUrl[] 
-}
-
 @Injectable()
 export class ArtService {
     private restApiEndpoint: string = `${environment.restApiEndpoint}/art`;
@@ -32,11 +20,10 @@ export class ArtService {
             thumbnailUrl: 'assets/shared/images/600-400.jpg'
         };
     }
-    getAll() : Observable<any[]> {
+    getAll() : Observable<IArtRecord[]> {
         const url = `${this.restApiEndpoint}/artist`;
-        console.log(url);
         
-        return this.http.get<any[]>(url)
+        return this.http.get<IArtRecord[]>(url)
             .pipe(
                 catchError(this.responseUtil.handleResponseError)
             );

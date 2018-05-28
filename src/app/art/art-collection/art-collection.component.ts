@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+// import { FormBuilder } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 
 import { ArtService, LogService } from '../../services';
 import { Router } from '@angular/router';
+import { CollectionFilterPipe } from '../pipes/collection-filter.pipe';
+
 @Component({
   selector: 'app-art-collection',
   templateUrl: './art-collection.component.html',
   styleUrls: ['./art-collection.component.css']
 })
 export class ArtCollectionComponent implements OnInit {
-    artCollection: any[] = [];
+    artCollection: IArtRecord[] = [];
 
     constructor(private artService: ArtService, 
         private logService: LogService,
