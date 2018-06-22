@@ -1,3 +1,17 @@
-<p>
-  art-create works!
-</p>
+<div class="container">
+    <form [formGroup]="createForm" novalidate (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label class="control-label">Title</label>
+            <input type="text" class="form-control" formControlName="title">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Description</label>
+            <textarea formControlName="description" class="form-control" cols="30" rows="5"></textarea>
+        </div>
+        <div class="button-group-hspaced pull-right">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+        <pre>{{formErrors | json}}</pre>
+    </form>
+</div>
