@@ -2,6 +2,10 @@
 
 # compiled output
 /dist
+<<<<<<< HEAD
+=======
+/dist-server
+>>>>>>> 7fc9c48bd2d9176e4d53afb8a6b016b0ee5c9b13
 /tmp
 /out-tsc
 
@@ -30,10 +34,20 @@
 /coverage
 /libpeerconnection.log
 npm-debug.log
+<<<<<<< HEAD
 yarn-error.log
 testem.log
 /typings
 
+=======
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+>>>>>>> 7fc9c48bd2d9176e4d53afb8a6b016b0ee5c9b13
 # System Files
 .DS_Store
 Thumbs.db

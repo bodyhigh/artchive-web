@@ -8,7 +8,7 @@ import { AppRouterModule } from './app-router.module';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
 // Services
-import { ArtService, AuthService, LogService, ResponseUtilService } from './services';
+import { ArtService, AuthService, FormValidationService, LogService, ResponseUtilService } from './services';
 import { AuthGuard } from './guards';
 
 import { AppComponent } from './app.component';
@@ -40,6 +40,7 @@ const jwtConfig = {
         ArtService,
         AuthGuard,
         AuthService,
+        FormValidationService,
         LogService,
         ResponseUtilService
     ],

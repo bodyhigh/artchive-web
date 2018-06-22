@@ -41,7 +41,11 @@ export class ArtCollectionComponent implements OnInit {
 
     onArtItemClick(item) {
         //art-collection/edit
-        this.router.navigate(['art-collection/edit/' + item._id])
+        this.router.navigate(['art-collection/edit/' + item._id]);
         
+    }
+
+    onNewItemClick() {
+        this.router.navigate(['art-collection/create']);
     }
 }
