@@ -23,7 +23,7 @@ export class ArtCreateComponent implements OnInit {
 
     formConfig() {
         this.createForm = this.fb.group({
-            title: new FormControl('', [Validators.required, Validators.maxLength(150)]),
+            title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
             description: new FormControl('', [Validators.required, Validators.minLength(3)])
         });
 
@@ -42,7 +42,7 @@ export class ArtCreateComponent implements OnInit {
             this.formValidation.validateForm(this.createForm, this.formErrors, false);
         }
 
-        console.log(this.createForm);
+        // console.log(this.createForm);
         // console.log(this.formErrors);
         // const desc = this.createForm.get('description');
         // console.log(desc.value.length);

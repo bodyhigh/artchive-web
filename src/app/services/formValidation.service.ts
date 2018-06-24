@@ -23,9 +23,11 @@ export class FormValidationService {
     public validationMessages() {
         const messages = {
             required: 'This field is required',
-            // minlength: 'This field must be at least # characters long'
             minlength: (params: any) => {
                 return `This field must be at least ${params.requiredLength} characters long`
+            },
+            maxlength: (params: any) => {
+                return `This field cannot exceed ${params.requiredLength} characters`
             }
         }
 
@@ -37,15 +39,11 @@ export class FormValidationService {
     // check_dirty false will check all fields independent of
     // being touched or not. Use this as the last check before submitting
     public validateForm(formToValidate: FormGroup, formErrors: any, checkDirty?: boolean) {
-        // console.log('????????????????? validating form ?????????????????');
-        
         const form = formToValidate;
-        // console.log(formErrors);
-        
+
         for(const field in formErrors) {
             if (field) {
                 formErrors[field] = '';
-                console.log('validating field: ' + field);
 
                 const control = form.get(field);
                 const messages = this.validationMessages();
@@ -55,15 +53,11 @@ export class FormValidationService {
                 if (control && !control.valid) {
                     if (!checkDirty || (control.dirty || control.touched)) {
                         for(const key in control.errors) {
-                            if (key && key === 'minlength') {
-                                // console.log('Some Special Error');
+                            if (key && (
+                                key === 'minlength' || key === 'maxlength')) {
                                 formErrors[field] = formErrors[field] || messages[key](control.errors[key]);
-                            } else {
-                                // console.log('found error: ' + formErrors[field]);
-                                // console.log('found error: ' + messages[key]);
-                                // console.log('found error: ' + key);
+                            } else {                                
                                 formErrors[field] = formErrors[field] || messages[key];
-                                                                
                             }
                         }
                     }
