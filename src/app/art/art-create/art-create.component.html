@@ -1,4 +1,13 @@
 <div class="container">
+    <div class="alert alert-dismissible alert-danger" *ngIf="responseError" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{responseError}}
+    </div>
+    <!-- <div class="alert alert-danger alert-dismissible" role="alert" *ngIf="responseError">
+        <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+        {{responseError}}
+    </div> -->
+
     <form [formGroup]="createForm" novalidate (ngSubmit)="submitForm()">
         <div class="form-group" [ngClass]="{ 'has-danger': formErrors.title }">
             <label class="control-label">Title</label>
@@ -10,10 +19,20 @@
             <textarea formControlName="description" class="form-control" cols="30" rows="5" [ngClass]="{ 'is-invalid': formErrors.description }"></textarea>
             <div class="invalid-feedback" *ngIf="formErrors.description">{{ formErrors.description }}</div>
         </div>
+        <div *ngIf="imageFileName" class="form-group" [ngClass]="{ 'has-danger': uploadFileError || formErrors.imageFile }">
+                <label class="control-label">File Name</label>
+                <input class="form-control" type="text" [value]="imageFileName" [ngClass]="{ 'is-invalid': uploadFileError || formErrors.imageFile }" readonly>
+                <div class="invalid-feedback" *ngIf="uploadFileError">{{ uploadFileError }}</div>
+                <div class="invalid-feedback" *ngIf="formErrors.imageFile">{{ formErrors.imageFile }}</div>
+        </div>
+        <div class="form-group">
+            <button type="button" (click)="onSelectImageFile()">Select an image file</button>
+            <input type="file" id="fileElement" style="display: none" accept="image/*" (change)="onImageFileChange($event.target.files)" #hiddenFileControl>
+        </div>
         <div class="button-group-hspaced pull-right">
             <button type="submit" class="btn btn-primary">Save</button>
-            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="button" class="btn btn-default" (click)="onNavigateBack()">Cancel</button>
         </div>
-        <!-- <pre>{{formErrors | json}}</pre> -->
+        <pre>{{formErrors | json}}</pre>
     </form>
 </div>

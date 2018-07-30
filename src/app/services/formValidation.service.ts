@@ -48,16 +48,24 @@ export class FormValidationService {
                 const control = form.get(field);
                 const messages = this.validationMessages();
 
-                console.log(control);
-
+                // console.log(control);
+                // console.log(`field: ${field}`);
+                // console.log(`control: ${control} -- ${!control.valid}`);
                 if (control && !control.valid) {
+                    // console.log(`control: ${!checkDirty} -- ${control.dirty} -- ${control.touched}`);
                     if (!checkDirty || (control.dirty || control.touched)) {
+                        // console.log(`control errors:`);
+                        // console.log(control.errors);
                         for(const key in control.errors) {
+                            // console.log(`key: ${key}`);
                             if (key && (
                                 key === 'minlength' || key === 'maxlength')) {
                                 formErrors[field] = formErrors[field] || messages[key](control.errors[key]);
-                            } else {                                
-                                formErrors[field] = formErrors[field] || messages[key];
+                            } else {
+                                // console.log(`formErrors-field: ${formErrors[field]}`);
+                                // console.log(`messages-key: ${messages[key]}`)
+                                // console.log(`messages-key: ${control.errors[key]}`)
+                                formErrors[field] = formErrors[field] || messages[key] || control.errors[key];
                             }
                         }
                     }

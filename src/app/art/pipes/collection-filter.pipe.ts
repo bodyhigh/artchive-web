@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CollectionFilterPipe implements PipeTransform {
 
     transform(collection: IArtRecord[], filterText: any): IArtRecord[] {
-        console.log(filterText);
         if (!collection) return [];
 
         if (!filterText) return collection;
